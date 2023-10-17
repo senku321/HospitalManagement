@@ -1,0 +1,21 @@
+<div class="form-container">
+    <h2>Add Patient Details</h2>
+    <form #patientForm="ngForm"  (ngSubmit)="onSubmit(patientForm)" >
+      <div class="form-group">
+        <label for="name">name:</label>
+        <input type="text" id="name" name="name" ngModel required class="form-input" (focus)="onFieldFocus()">
+      </div>
+      <div class="form-group">
+        <label for="spec">specialization:</label>
+        <input type="text" id="spec" name="spec" ngModel required="" class="form-input">
+      </div>
+      <div class="form-group">
+        <label for="pno">phone number:</label>
+        <input type="text" id="pno" name="pno" ngModel required="" class="form-input">
+      </div>
+
+      <button type="submit" class="form-button">Submit</button>
+    </form>
+    <div *ngIf="submitted" class="confirm">New Doctor Has Been Added</div>
+
+  </div>

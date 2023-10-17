@@ -1,0 +1,20 @@
+<main class="container">
+    <div class="item" *ngFor="let patients of data">
+
+        <ng-container *ngFor="let d of patients | keyvalue: unsorted ">
+            <p *ngIf="d.key !== 'doctor'; else elseBlock">{{d.key}} : {{d.value}}</p>
+            <ng-template #elseBlock>
+                <p *ngIf="d.value; else btn">{{d.key}} : {{d.value | nameOnly}}</p>
+                <ng-template #btn>
+                    <select id="doctor" name="doctor" ngModel required="" class="form-input"  #docSelect>
+                        <option value="" selected disabled hidden>assign the doctor</option>
+                        <option *ngFor="let doc of doc$ | async">{{doc.name}}</option>
+                    </select>
+                    <button (click)="confirmDoctor(docSelect.value,patients.pid)" class="btn">Confirm</button>
+                </ng-template>
+            </ng-template>
+            
+        </ng-container>
+        <button id="Delete" (click)="delete(patients.pid)">Delete</button>
+    </div>
+</main>
